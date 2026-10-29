@@ -1,0 +1,27 @@
+/* site.css — hand-written styles for austinvanloon.com.
+   styles.css is the frozen stylesheet compiled from the original Lovable export (Tailwind utilities
+   actually used by the pages, plus the design tokens on :root). Do not edit styles.css by hand;
+   put every new or overriding rule in this file. Tokens you can use: var(--background), var(--foreground),
+   var(--primary), var(--muted-foreground), var(--rule), var(--card), var(--radius). */
+
+/* ---- Mobile navigation panel (toggled by assets/site.js below 720px) ---- */
+.mobile-nav{display:none;flex-direction:column;gap:.15rem;border-top:1px solid var(--rule);padding:.6rem 1.25rem 1rem}
+.mobile-nav[data-open]{display:flex}
+.mobile-nav a{padding:.45rem 0;font-size:.95rem;color:var(--muted-foreground);transition:color .15s ease}
+.mobile-nav a:hover{color:var(--primary)}
+@media (width>=720px){.mobile-nav{display:none !important}}
+
+/* ---- Home-page entrance animation + hover micro-interactions (added by hand 2026-09-13) ---- */
+@keyframes avl-rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes avl-rise-img{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
+section[class*="1.35fr_1fr"]>*{animation:avl-rise .7s cubic-bezier(.22,.61,.36,1) both}
+section[class*="1.35fr_1fr"]>img{animation-name:avl-rise-img;animation-delay:.15s}
+section[class*="md:grid-cols-2"]>div.rounded-xl.bg-card{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+section[class*="md:grid-cols-2"]>div.rounded-xl.bg-card:hover{transform:translateY(-2px);border-color:color-mix(in oklab,var(--color-primary) 40%,transparent);box-shadow:0 8px 20px -12px rgba(40,30,20,.25)}
+a.rounded-md.bg-primary,a.rounded-md.border-rule{transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease,color .15s ease,border-color .15s ease}
+a.rounded-md.bg-primary:hover,a.rounded-md.border-rule:hover{transform:translateY(-1px)}
+a.rounded-md.bg-primary:hover{box-shadow:0 6px 14px -8px rgba(40,30,20,.45)}
+a.rounded-md.bg-primary:active,a.rounded-md.border-rule:active{transform:none}
+.link-accent{transition:text-decoration-color .15s ease,text-underline-offset .15s ease}
+.link-accent:hover{text-underline-offset:4px}
+@media (prefers-reduced-motion:reduce){section[class*="1.35fr_1fr"]>*{animation:none}section[class*="md:grid-cols-2"]>div.rounded-xl.bg-card:hover,a.rounded-md.bg-primary:hover,a.rounded-md.border-rule:hover{transform:none}}
